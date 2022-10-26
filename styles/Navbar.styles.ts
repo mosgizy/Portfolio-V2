@@ -128,8 +128,6 @@ export const NavItemWrapper = styled.ul<navInterfaces>`
 
 `
 
-
-
 export const NavItem = styled.li`
     text-transform: uppercase;
     font-size: var(--small-font);

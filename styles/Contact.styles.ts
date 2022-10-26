@@ -81,7 +81,7 @@ export const InputContainer = styled.div`
     input,textarea{
         width: 100%;
         padding-block: 1rem;
-        padding-inline: 4rem .8rem;
+        padding-inline: 3.8rem .8rem;
         background: linear-gradient(159deg, #252532 0%, #23232d 100%);
         box-shadow: inset 0 1px 4px 0 rgba(15, 15, 20, 0.1);
         border: none;
@@ -106,6 +106,11 @@ export const InputContainer = styled.div`
         background-color: var(--btn-color);
         height: 100%;
         transition:all var(--transition);
+
+        svg{
+            font-size:1rem;
+            width: 10px;
+        }
     }
 
     textarea{

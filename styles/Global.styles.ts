@@ -49,6 +49,8 @@ const GlobalStyle = createGlobalStyle`
         height: 100vh;
         background: var(--bg-color);
         overflow-x: hidden;
+        line-height: 1.5;
+        letter-spacing:0.5px;
     }
 
     img{
@@ -81,6 +83,7 @@ const GlobalStyle = createGlobalStyle`
 
     h5{
         font-size:14px;
+        font-weight: 600;
     }
 
     h6{
@@ -159,13 +162,10 @@ export const SectionBackground = styled.div`
 `
 
 export const SectionContainer = styled.div`
-    /* padding-block-start: 100px; */
-    /* padding-block-end: 2rem; */
     padding-inline:1rem;
     overflow-y:scroll ;
 
     @media only screen and (min-width:${TABLET}){
-        /* padding-block-start: 2rem; */
         padding-inline:2rem ;
     }
 `
