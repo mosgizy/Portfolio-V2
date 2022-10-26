@@ -55,16 +55,52 @@ export const SidebarHeaderAvatart = styled.div`
         border-radius: 50%;
     }
 
-    ::before {
+    ::before,
+    ::after {
         content:"";
         position:absolute;
         bottom:10%;
         right:8%;
-        width:.8rem;
-        height:.8rem;
         border-radius: 50%;
         z-index:2;
+    }
+
+    ::before {
+        width:.8rem;
+        height:.8rem;
         background-color:var(--secondary-color);
+    }
+
+    ::after{
+        background-color: rgba(255,255,255,0.4);
+        animation: beat 1s linear infinite;
+        width: 1.25rem;
+        height: 1.25rem;
+        right:3%;
+        bottom: 6%;
+        z-index: 1;
+    }
+
+    @keyframes beat {
+        0%{
+            transform: scale(0.2); 
+            opacity:0;
+        }
+
+        40%{
+            transform: scale(0.5); 
+            opacity:0.5;
+        }
+
+        80%{
+            transform: scale(0.8); 
+            opacity:0.8;
+        }
+
+        100%{
+            transform:scale(1);
+            opacity:1;
+        }
     }
 `
 

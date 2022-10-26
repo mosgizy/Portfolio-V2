@@ -84,7 +84,7 @@ export const CardWrapper = styled.div`
         .beat{
             position: absolute;
             inset: 0;
-            background-color: var(--header-text-color);
+            background-color: rgba(255,255,255,0.4);
             border-radius: 50%;
             animation: beat 1s linear infinite;
             display: none;
