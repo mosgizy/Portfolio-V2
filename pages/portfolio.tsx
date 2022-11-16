@@ -1,3 +1,4 @@
+import type { NextPage } from 'next';
 import {
 	NavWrapper,
 	PortfolioContainer,
@@ -7,7 +8,7 @@ import Nav from '../components/portfolio/Nav';
 import Project from '../components/portfolio/Project';
 import portfolioImg from '../resources/images/portfolio.jpg';
 
-const Portfolio = (): JSX.Element => {
+const Portfolio: NextPage = (): JSX.Element => {
 	const navItems = ['all categories', 'landing page', 'javascript', 'react'];
 	return (
 		<PortfolioWrapper className="animate">

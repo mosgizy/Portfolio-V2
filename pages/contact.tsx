@@ -1,8 +1,9 @@
+import type { NextPage } from 'next';
 import ContactForm from '../components/contact/ContactForm';
 import ContactInfo from '../components/contact/ContactInfo';
 import { ContactInfoWrapper, ContactWrapper } from '../styles/Contact.styles';
 
-const Contact = (): JSX.Element => {
+const Contact: NextPage = (): JSX.Element => {
 	return (
 		<ContactWrapper className="animate">
 			<h4>contact information</h4>

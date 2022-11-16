@@ -7,6 +7,7 @@ export const ContactWrapper = styled.section`
     height: 100vh;
     margin-block-start: 75px;
     padding-block-end: 7rem;
+    /* position: relative; */
      > h4{
         margin-block: var(--padding);
         text-align: center;

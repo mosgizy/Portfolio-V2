@@ -1,5 +1,4 @@
-import styled from 'styled-components';
-import { TABLET, DESKTOP } from '../resources/constants/screenSize';
+import styled,{css} from 'styled-components';
 
 export const HistoryWrapper = styled.div`
     display: flex;
@@ -63,7 +62,7 @@ export const CardWrapper = styled.div`
     
     .ring{
         position: absolute;
-        right:-2.95rem;
+        right:-2.9rem;
         top:12px;
         width: 20px;
         height: 20px;
@@ -113,6 +112,28 @@ export const CardWrapper = styled.div`
         }
     }
 
+    .link{
+        text-transform: uppercase;
+        color:var(--secondary-color);
+        font-size:9px;
+        font-weight: 900;
+        cursor: pointer;
+
+        :hover{
+            .arrow svg{
+                width: 1rem;
+            }
+        }
+
+        .arrow{
+            svg{
+                width: 8px;
+                height:8px;
+                transition:width var(--transition);
+            }
+        }
+    }
+
     :hover .beat{
             display: block;
     }
@@ -152,3 +173,38 @@ export const Date = styled.div`
 `
 
 export const Link = styled.div``
+
+export const ModalWrapper = styled.div`
+    position:fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding-inline:1rem;
+    z-index: 1000;
+
+    .slider-control-centerright,
+    .slider-control-centerleft {
+        display: none !important;
+    }
+`
+
+const center = css`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+`
+
+export const ModalElement = styled.div`
+    ${center}
+    min-height: 100vh;
+`
+
+export const ModalContent = styled.div`
+    max-width: 950px;
+    margin:auto;
+    aspect-ratio:1;
+    ${center}
+
+    > img{
+        width:100%;
+    }
+`
