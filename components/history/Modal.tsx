@@ -4,7 +4,7 @@ import {
 	ModalWrapper,
 } from '../../styles/History.styles';
 import cert from '../../resources/images/certificate.jpg';
-import Image from 'next/image';
+import Image, { StaticImageData } from 'next/image';
 import Carousel from 'nuka-carousel';
 
 interface prop {
@@ -34,9 +34,12 @@ const Modal = ({ index, setShowModal, cardType }: prop): JSX.Element => {
 					dragThreshold={0}
 					enableKeyboardControls={true}
 				>
-					{datas.map((data, index) => {
+					{datas?.map((data: StaticImageData, index: number) => {
 						return (
-							<ModalContent key={index} onClick={(e) => e.stopPropagation()}>
+							<ModalContent
+								key={index}
+								onClick={(e: Event) => e.stopPropagation()}
+							>
 								{cardType === 'certificate' && <Image src={data} alt="cert" />}
 							</ModalContent>
 						);

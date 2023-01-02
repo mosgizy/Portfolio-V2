@@ -20,7 +20,6 @@ import { useState, useEffect } from 'react';
 import { Overlay } from '../../styles/Global.styles';
 import Sidebar from '../sidebar/Sidebar';
 import { useRouter } from 'next/router';
-
 interface NavInterface {
 	setSlide: React.Dispatch<React.SetStateAction<boolean>>;
 }

@@ -72,6 +72,7 @@ export const Projectcard = styled.div`
     cursor: pointer;
     position: relative;
     overflow: hidden;
+    height: 250px;
     
     &:hover{
         > div{
@@ -94,6 +95,7 @@ export const Projectcard = styled.div`
 export const ProjectInfo = styled.div`
     display: flex;
     flex-direction: column;
+    justify-content: center;
     gap: 1rem;
     background: linear-gradient(159deg, 
         rgba(45, 45, 58, 0.98) 0%, 
@@ -101,6 +103,7 @@ export const ProjectInfo = styled.div`
     box-shadow: 0 3px 8px 0 rgba(15, 15, 20, 0.2);
     padding:var(--padding);
     width: 100%;
+    height: 100%;
     position:absolute;
     transform: translateY(0);
     transition: transform var(--transition);

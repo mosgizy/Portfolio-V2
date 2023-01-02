@@ -1,8 +1,17 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
 import HomePage from '../components/home/HomePage';
+import GetData from '../helpers/functions';
+import { useEffect } from 'react';
+
+const url = 'https://my-json-server.typicode.com/mosgizy/portfolio-api-V2/db';
 
 const Home: NextPage = () => {
+	const data = GetData(url);
+	useEffect(() => {
+		console.log(data);
+	}, []);
+
 	return (
 		<div>
 			<Head>

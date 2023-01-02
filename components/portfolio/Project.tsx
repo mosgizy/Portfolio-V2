@@ -13,16 +13,16 @@ interface projectInterface {
 
 const Project = ({ title, img, link, code }: projectInterface): JSX.Element => {
 	return (
-		<Link href="#">
+		<Link href={link}>
 			<Projectcard>
-				<Image src={img} alt={title} />
+				<Image src={img} layout="fill" height={100} width={100} alt={title} />
 				<ProjectInfo>
 					<h5>{title}</h5>
 					<p>
 						Lorem ipsum dolor, sit amet consectetur adipisicing elit. Obcaecati,
 						aliquam.
 					</p>
-					<Link href="#">read more</Link>
+					<Link href={link}>read more</Link>
 				</ProjectInfo>
 			</Projectcard>
 		</Link>

@@ -3,13 +3,13 @@ import GlobalStyle, { SectionContainer } from '../styles/Global.styles';
 import Navbar from '../components/navbar/Navbar';
 import { SectionBackground, SectionWrapper } from '../styles/Global.styles';
 import gsap from 'gsap';
-import { useRef, useLayoutEffect, useState } from 'react';
+import { useRef, useEffect, useState } from 'react';
 
 function MyApp({ Component, pageProps }: AppProps) {
 	const app = useRef<HTMLDivElement>(null);
 	const [active, setActive] = useState<boolean>(false);
 
-	useLayoutEffect(() => {
+	useEffect(() => {
 		const ctx = gsap.context(() => {
 			gsap.fromTo(
 				'.animate',
