@@ -20,11 +20,13 @@ import { useState, useEffect } from 'react';
 import { Overlay } from '../../styles/Global.styles';
 import Sidebar from '../sidebar/Sidebar';
 import { useRouter } from 'next/router';
+import About from '../../resources/interface/sideBar';
 interface NavInterface {
 	setSlide: React.Dispatch<React.SetStateAction<boolean>>;
+	data: About;
 }
 
-const Navbar = ({ setSlide }: NavInterface): JSX.Element => {
+const Navbar = ({ setSlide, data }: NavInterface): JSX.Element => {
 	const [active, setActive] = useState<boolean>(true);
 	const [toggleSidebar, setToggleSidebar] = useState<boolean>(true);
 	const [currentPage, setCurrentPage] = useState<string>('');
@@ -38,6 +40,10 @@ const Navbar = ({ setSlide }: NavInterface): JSX.Element => {
 	useEffect(() => {
 		setCurrentPage(pathname === '/' ? 'home' : pathname.slice(1));
 	}, [pathname]);
+
+	useEffect(() => {
+		// console.log(data);
+	}, [data]);
 
 	return (
 		<NavContainer>
@@ -101,7 +107,11 @@ const Navbar = ({ setSlide }: NavInterface): JSX.Element => {
 					</NavItemWrapper>
 				</NavContent>
 			</NavContentWrapper>
-			<Sidebar active={toggleSidebar} setActive={setToggleSidebar} />
+			<Sidebar
+				active={toggleSidebar}
+				setActive={setToggleSidebar}
+				data={data}
+			/>
 		</NavContainer>
 	);
 };

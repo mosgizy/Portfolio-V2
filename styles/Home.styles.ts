@@ -85,6 +85,18 @@ export const BannerContent = styled.div`
     }
 `
 
+export const Intro = styled.div`
+    text-transform: uppercase;
+    
+    h1{
+        font-size:1.5rem;
+
+        @media only screen and (min-width:${TABLET}){
+            font-size:2.5rem;
+        }
+    }
+`
+
 export const Buttton = styled.button`
     background-color:var(--secondary-color);
     color: var(--btn-color);

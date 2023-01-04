@@ -1,4 +1,5 @@
 import { StaticImageData } from 'next/image';
+
 export default interface api{
     projects: ProjectsI[];
     about: AboutI;

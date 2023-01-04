@@ -30,7 +30,7 @@ const GlobalStyle = createGlobalStyle`
 
         --box-shadow: 0 3px 8px rgba(15, 15, 20, 0.2);
 
-        --transition:.3s ease-in-out;
+        --transition:.4s ease-in-out;
 
         --small-font:11px;
 

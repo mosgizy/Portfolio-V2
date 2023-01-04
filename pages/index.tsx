@@ -1,17 +1,16 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
 import HomePage from '../components/home/HomePage';
-import GetData from '../helpers/functions';
 import { useEffect } from 'react';
+import About from '../resources/interface/sideBar';
+import type { GetServerSideProps, InferGetServerSidePropsType } from 'next';
 
-const url = 'https://my-json-server.typicode.com/mosgizy/portfolio-api-V2/db';
+const url = 'https://my-json-server.typicode.com/mosgizy/portfolio-api-V2/';
 
-const Home: NextPage = () => {
-	const data = GetData(url);
+const Home = (data: InferGetServerSidePropsType<typeof getServerSideProps>) => {
 	useEffect(() => {
-		console.log(data);
+		// console.table(data.data);
 	}, []);
-
 	return (
 		<div>
 			<Head>
@@ -20,9 +19,36 @@ const Home: NextPage = () => {
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
 
-			<HomePage />
+			<HomePage
+				about={data.data.profile.info}
+				intro={data.data.profile.intro}
+			/>
 		</div>
 	);
+};
+
+export const getServerSideProps: GetServerSideProps<{
+	data: About;
+}> = async () => {
+	const res = await fetch(url + 'about');
+	const data: About = await res.json();
+
+	console.log(data);
+
+	if (!data) {
+		return {
+			redirect: {
+				destination: '/',
+				permanent: false,
+			},
+		};
+	}
+
+	return {
+		props: {
+			data,
+		},
+	};
 };
 
 export default Home;

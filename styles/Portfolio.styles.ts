@@ -73,10 +73,20 @@ export const Projectcard = styled.div`
     position: relative;
     overflow: hidden;
     height: 250px;
+    border-radius: .4rem;
+    box-shadow:  10px 15px 12px 1px rgba(0,0,0,0.4);
     
     &:hover{
         > div{
-            transform: translateY(-100%);
+            transform: translateY(115px);
+        }
+    }
+
+    @media only screen and (min-width:${LARGE_SCREEN}){
+        &:hover{
+            > div{
+                transform: translateY(135px);
+            }
         }
     }
 
@@ -95,17 +105,16 @@ export const Projectcard = styled.div`
 export const ProjectInfo = styled.div`
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    gap: 1rem;
+    gap: .5rem;
     background: linear-gradient(159deg, 
         rgba(45, 45, 58, 0.98) 0%, 
         rgba(43, 43, 53, 0.98) 100%);
     box-shadow: 0 3px 8px 0 rgba(15, 15, 20, 0.2);
-    padding:var(--padding);
+    padding:1rem;
     width: 100%;
-    height: 100%;
+    height: 150px;
     position:absolute;
-    transform: translateY(0);
+    transform: translateY(250%);
     transition: transform var(--transition);
 
     h5{

@@ -5,9 +5,15 @@ import {
 	Buttton,
 	HomeContainer,
 	HomeWrapper,
+	Intro,
 } from '../../styles/Home.styles';
 
-const Home = (): JSX.Element => {
+interface homeI {
+	about: string[];
+	intro: string[];
+}
+
+const Home = ({ about, intro }: homeI): JSX.Element => {
 	return (
 		<HomeContainer>
 			<HomeWrapper className="animate">
@@ -15,24 +21,33 @@ const Home = (): JSX.Element => {
 					<div className="overlay"></div>
 				</BannerWrapper>
 				<BannerContent>
-					<h1>Discover my Amazing Art Space!</h1>
-					<p>
-						{'<'}
-						<i>code</i>
-						{'>'}
+					<>
+						<Intro>
+							{intro.map((text, index) => {
+								return <h1 key={index}>{text}</h1>;
+							})}
+						</Intro>
+						<div>
+							<p>
+								{'<'}
+								<i>code</i>
+								{'>'}
+							</p>
 
-						<span>
-							Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-							Deleniti, aperiam.
-						</span>
+							{about.map((para, index) => {
+								return <p key={index}>{para}</p>;
+							})}
 
-						{'</'}
-						<i>code</i>
-						{'>'}
-					</p>
-					<Buttton>
-						<Link href="/portfolio">explore now</Link>
-					</Buttton>
+							<p>
+								{'</'}
+								<i>code</i>
+								{'>'}
+							</p>
+						</div>
+						<Buttton>
+							<Link href="/portfolio">explore now</Link>
+						</Buttton>
+					</>
 				</BannerContent>
 			</HomeWrapper>
 		</HomeContainer>

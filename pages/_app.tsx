@@ -1,13 +1,18 @@
 import type { AppProps } from 'next/app';
+import type { GetServerSideProps, InferGetServerSidePropsType } from 'next';
 import GlobalStyle, { SectionContainer } from '../styles/Global.styles';
 import Navbar from '../components/navbar/Navbar';
 import { SectionBackground, SectionWrapper } from '../styles/Global.styles';
 import gsap from 'gsap';
 import { useRef, useEffect, useState } from 'react';
+import About from '../resources/interface/sideBar';
+
+const url = 'https://my-json-server.typicode.com/mosgizy/portfolio-api-V2/';
 
 function MyApp({ Component, pageProps }: AppProps) {
 	const app = useRef<HTMLDivElement>(null);
 	const [active, setActive] = useState<boolean>(false);
+	const [sidebarProps, setSidebarProps] = useState<About>();
 
 	useEffect(() => {
 		const ctx = gsap.context(() => {
@@ -28,10 +33,17 @@ function MyApp({ Component, pageProps }: AppProps) {
 		return () => ctx.revert();
 	});
 
+	useEffect(() => {
+		if (pageProps.data?.profile) {
+			setSidebarProps(pageProps.data);
+		}
+		console.log(pageProps.data.profile);
+	}, []);
+
 	return (
 		<>
 			<GlobalStyle />
-			<Navbar setSlide={setActive} />
+			{sidebarProps && <Navbar setSlide={setActive} data={sidebarProps} />}
 			<SectionWrapper active={active}>
 				<SectionBackground>
 					<div className="overlay"></div>

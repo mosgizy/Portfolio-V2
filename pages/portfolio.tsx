@@ -6,15 +6,29 @@ import {
 } from '../styles/Portfolio.styles';
 import Nav from '../components/portfolio/Nav';
 import Project from '../components/portfolio/Project';
-import portfolioImg from '../resources/images/portfolio.jpg';
-import { useEffect, useState } from 'react';
-import { ProjectsI } from '../helpers/interface';
+import { ProjectsI } from '../resources/interface/project';
+import { useState } from 'react';
 
 const url = 'https://my-json-server.typicode.com/mosgizy/portfolio-api-V2/';
 
 const Portfolio = ({
 	...projects
 }: InferGetServerSidePropsType<typeof getServerSideProps>): JSX.Element => {
+	const [categories, setCategories] = useState<ProjectsI[]>(projects.data);
+
+	const selectCategory = (categoryName: string) => {
+		if (categoryName === 'all categories') {
+			setCategories(projects.data);
+			return;
+		}
+
+		const category = projects.data.filter((project) => {
+			return project.category === categoryName;
+		});
+
+		setCategories(category);
+	};
+
 	const navItems = projects.data.reduce(
 		(navItems: string[], navItem) => {
 			if (!navItems.includes(navItem.category)) {
@@ -25,23 +39,17 @@ const Portfolio = ({
 		['all categories']
 	);
 
-	useEffect(() => {
-		console.log(projects.data);
-		// console.log(navItems);
-	}, []);
-
 	return (
 		<PortfolioWrapper className="animate">
 			<NavWrapper>
 				{navItems.map((navItem, index) => (
-					<Nav key={index} title={navItem} />
+					<Nav key={index} title={navItem} selectedCategory={selectCategory} />
 				))}
 			</NavWrapper>
 
 			<PortfolioContainer>
-				{projects.data.map((project) => {
+				{categories.map((project) => {
 					const { id, title, img, source, demo, description } = project;
-					// console.log(project);
 					return (
 						<Project
 							key={id}
@@ -64,10 +72,12 @@ export const getServerSideProps: GetServerSideProps<{
 	const res = await fetch(url + 'projects');
 	const data: ProjectsI[] = await res.json();
 
+	console.log(data);
+
 	if (!data) {
 		return {
 			redirect: {
-				destination: '/portfolio',
+				destination: '/',
 				permanent: false,
 			},
 		};

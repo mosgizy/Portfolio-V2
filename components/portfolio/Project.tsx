@@ -11,21 +11,24 @@ interface projectInterface {
 	about: string;
 }
 
-const Project = ({ title, img, link, code }: projectInterface): JSX.Element => {
+const Project = ({
+	title,
+	img,
+	link,
+	code,
+	about,
+}: projectInterface): JSX.Element => {
 	return (
-		<Link href={link}>
-			<Projectcard>
-				<Image src={img} layout="fill" height={100} width={100} alt={title} />
-				<ProjectInfo>
-					<h5>{title}</h5>
-					<p>
-						Lorem ipsum dolor, sit amet consectetur adipisicing elit. Obcaecati,
-						aliquam.
-					</p>
-					<Link href={link}>read more</Link>
-				</ProjectInfo>
-			</Projectcard>
-		</Link>
+		<Projectcard>
+			<Link href={link}>
+				<Image src={img} layout="fill" alt={title} />
+			</Link>
+			<ProjectInfo>
+				<h5>{title}</h5>
+				<p>{about}</p>
+				<Link href={code}>check code</Link>
+			</ProjectInfo>
+		</Projectcard>
 	);
 };
 

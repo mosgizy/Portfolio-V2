@@ -125,7 +125,7 @@ export const SidebarHeaderInfo = styled.div`
 
 export const SidebarSectionWrapper = styled.div`
     padding-inline: var(--padding);
-    padding-block:15.5rem 4.5rem;
+    padding-block:13rem 4.5rem;
     height: 100vh;
     overflow:scroll;
 
@@ -214,8 +214,8 @@ export const SocialMediaLinks = styled(SidebarHeader)`
     }
 
     img{
-        width:15px !important;
-        height:15px !important;
+        width:20px !important;
+        height:20px !important;
         color:white;
     }
 `

@@ -1,9 +1,4 @@
-import { useState } from 'react';
-import {
-	NavContent,
-	NavContentWrapper,
-	NavIcon,
-} from '../../styles/Navbar.styles';
+import { NavContent, NavIcon } from '../../styles/Navbar.styles';
 import {
 	SidebarContentWrapper,
 	SidebarHeader,
@@ -25,21 +20,34 @@ import htmlIcon from '../../resources/images/html5.png';
 import cssIcon from '../../resources/images/css3.png';
 import reactIcon from '../../resources/images/react.png';
 import nextIcon from '../../resources/images/next.png';
-import Image from 'next/image';
+import Image, { StaticImageData } from 'next/image';
 import { Overlay } from '../../styles/Global.styles';
 import Link from 'next/link';
-
+import About from '../../resources/interface/sideBar';
+import { useLayoutEffect, useState } from 'react';
+import useGetData from '../../helpers/functions';
 interface sideBarInterface {
 	active: boolean;
 	setActive: React.Dispatch<React.SetStateAction<boolean>>;
+	data: About;
 }
 
-const Sidebar = ({ active, setActive }: sideBarInterface): JSX.Element => {
+const url = 'https://my-json-server.typicode.com/mosgizy/portfolio-api-V2/';
+
+interface socialI {
+	[index: string]: StaticImageData;
+}
+
+const Sidebar = ({
+	active,
+	setActive,
+	data,
+}: sideBarInterface): JSX.Element => {
 	const handleToggle = () => {
 		setActive((prev) => !prev);
 	};
 
-	const skillIcons = {
+	const skillIcons: socialI = {
 		html: htmlIcon,
 		css: cssIcon,
 		reactJs: reactIcon,
@@ -53,6 +61,10 @@ const Sidebar = ({ active, setActive }: sideBarInterface): JSX.Element => {
 		GithubIcon,
 		LinkedinIcon,
 	];
+
+	useLayoutEffect(() => {
+		// console.table(Object.entries(data.skills.main));
+	}, []);
 
 	return (
 		<SidebarContentWrapper>
@@ -72,13 +84,13 @@ const Sidebar = ({ active, setActive }: sideBarInterface): JSX.Element => {
 					</div>
 					<SidebarHeaderWrapper>
 						<SidebarHeaderAvatart>
-							<Image src={avatar} alt="Avatar" />
+							<Image layout="fill" src={data.profile.image} alt="Avatar" />
 						</SidebarHeaderAvatart>
 						<SidebarHeaderInfo>
-							<h5>moshood ope</h5>
+							<h5>{data.profile.name}</h5>
 							<div>
-								<p>front-end developer</p>
-								<p>game play developer</p>
+								<p>{data.profile.developer}</p>
+								{/* <p>game play developer</p> */}
 							</div>
 						</SidebarHeaderInfo>
 					</SidebarHeaderWrapper>
@@ -88,21 +100,21 @@ const Sidebar = ({ active, setActive }: sideBarInterface): JSX.Element => {
 						<ul>
 							<li>
 								<h6>residence:</h6>
-								<p>nigeria</p>
+								<p>{data.profile.country}</p>
 							</li>
 							<li>
 								<h6>city:</h6>
-								<p>lagos</p>
+								<p>{data.profile.city}</p>
 							</li>
 						</ul>
 					</SideBarSections>
 					<SideBarSections>
 						<ul className="skills">
-							{Object.entries(skillIcons).map((skill, index) => {
+							{Object.entries(data.skills.main).map((skill, index) => {
 								return (
 									<li key={index}>
 										<h6>{skill[0]}</h6>
-										<Image src={skill[1]} alt={skill[0]} />
+										<Image src={skill[1]} width={3} height={3} alt={skill[0]} />
 									</li>
 								);
 							})}
@@ -131,10 +143,17 @@ const Sidebar = ({ active, setActive }: sideBarInterface): JSX.Element => {
 				</SidebarSectionWrapper>
 				<SocialMediaLinks>
 					<ul>
-						{socialIcons.map((socialIcon, index) => {
+						{Object.entries(data.socialMedia).map((socialIcon, index) => {
 							return (
 								<li key={index}>
-									<Link href="#">{socialIcon}</Link>
+									<Link href={socialIcon[1].link}>
+										<Image
+											src={socialIcon[1].icon}
+											width={20}
+											height={20}
+											alt="social icon"
+										/>
+									</Link>
 								</li>
 							);
 						})}
