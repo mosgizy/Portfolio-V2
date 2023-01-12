@@ -1,6 +1,6 @@
 import { StaticImageData } from 'next/image';
 
-export default interface About{
+export default interface AboutI{
     profile: profileI;
     skills: SkillsI;
     socialMedia: SocialMediaLinksI;

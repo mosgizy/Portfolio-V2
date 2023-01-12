@@ -36,10 +36,7 @@ const Modal = ({ index, setShowModal, cardType }: prop): JSX.Element => {
 				>
 					{datas?.map((data: StaticImageData, index: number) => {
 						return (
-							<ModalContent
-								key={index}
-								onClick={(e: Event) => e.stopPropagation()}
-							>
+							<ModalContent key={index} onClick={(e) => e.stopPropagation()}>
 								{cardType === 'certificate' && <Image src={data} alt="cert" />}
 							</ModalContent>
 						);

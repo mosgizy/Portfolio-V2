@@ -15,55 +15,47 @@ import {
 	faCheck,
 	faDownload,
 } from '@fortawesome/free-solid-svg-icons';
-import avatar from '../../resources/images/avatar.jpg';
-import htmlIcon from '../../resources/images/html5.png';
-import cssIcon from '../../resources/images/css3.png';
-import reactIcon from '../../resources/images/react.png';
-import nextIcon from '../../resources/images/next.png';
+// import avatar from '../../resources/images/avatar.jpg';
+// import htmlIcon from '../../resources/images/html5.png';
+// import cssIcon from '../../resources/images/css3.png';
+// import reactIcon from '../../resources/images/react.png';
+// import nextIcon from '../../resources/images/next.png';
 import Image, { StaticImageData } from 'next/image';
 import { Overlay } from '../../styles/Global.styles';
 import Link from 'next/link';
 import About from '../../resources/interface/sideBar';
 import { useLayoutEffect, useState } from 'react';
-import useGetData from '../../helpers/functions';
+import type { RootState } from '../../store/store';
+import { useSelector } from 'react-redux';
 interface sideBarInterface {
 	active: boolean;
 	setActive: React.Dispatch<React.SetStateAction<boolean>>;
-	data: About;
 }
 
-const url = 'https://my-json-server.typicode.com/mosgizy/portfolio-api-V2/';
-
-interface socialI {
-	[index: string]: StaticImageData;
-}
-
-const Sidebar = ({
-	active,
-	setActive,
-	data,
-}: sideBarInterface): JSX.Element => {
+const Sidebar = ({ active, setActive }: sideBarInterface): JSX.Element => {
 	const handleToggle = () => {
 		setActive((prev) => !prev);
 	};
 
-	const skillIcons: socialI = {
-		html: htmlIcon,
-		css: cssIcon,
-		reactJs: reactIcon,
-		nextJs: nextIcon,
-	};
+	const data = useSelector((state: RootState) => state.portfolio.about);
 
-	const socialIcons = [
-		TwitterIcon,
-		FacebookIcon,
-		MediumIcon,
-		GithubIcon,
-		LinkedinIcon,
-	];
+	// const skillIcons: socialI = {
+	// 	html: htmlIcon,
+	// 	css: cssIcon,
+	// 	reactJs: reactIcon,
+	// 	nextJs: nextIcon,
+	// };
+
+	// const socialIcons = [
+	// 	TwitterIcon,
+	// 	FacebookIcon,
+	// 	MediumIcon,
+	// 	GithubIcon,
+	// 	LinkedinIcon,
+	// ];
 
 	useLayoutEffect(() => {
-		// console.table(Object.entries(data.skills.main));
+		console.log(data);
 	}, []);
 
 	return (

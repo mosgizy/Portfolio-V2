@@ -4,12 +4,20 @@ import HomePage from '../components/home/HomePage';
 import { useEffect } from 'react';
 import About from '../resources/interface/sideBar';
 import type { GetServerSideProps, InferGetServerSidePropsType } from 'next';
+import { useDispatch } from 'react-redux';
+import { sidebar, home } from '../store/slice/portfolioSlice';
 
 const url = 'https://my-json-server.typicode.com/mosgizy/portfolio-api-V2/';
 
 const Home = (data: InferGetServerSidePropsType<typeof getServerSideProps>) => {
+	const dispatch = useDispatch();
 	useEffect(() => {
-		// console.table(data.data);
+		const homePage = {
+			info: data.data.profile.info,
+			intro: data.data.profile.intro,
+		};
+		dispatch(sidebar(data.data));
+		dispatch(home(homePage));
 	}, []);
 	return (
 		<div>
@@ -19,10 +27,7 @@ const Home = (data: InferGetServerSidePropsType<typeof getServerSideProps>) => {
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
 
-			<HomePage
-				about={data.data.profile.info}
-				intro={data.data.profile.intro}
-			/>
+			<HomePage />
 		</div>
 	);
 };
@@ -32,8 +37,6 @@ export const getServerSideProps: GetServerSideProps<{
 }> = async () => {
 	const res = await fetch(url + 'about');
 	const data: About = await res.json();
-
-	console.log(data);
 
 	if (!data) {
 		return {

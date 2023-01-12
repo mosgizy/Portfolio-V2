@@ -7,13 +7,17 @@ import {
 	HomeWrapper,
 	Intro,
 } from '../../styles/Home.styles';
-
+import { useSelector } from 'react-redux';
+import { RootState } from '../../store/store';
 interface homeI {
 	about: string[];
 	intro: string[];
 }
 
-const Home = ({ about, intro }: homeI): JSX.Element => {
+const Home = (): JSX.Element => {
+	const { info, intro } = useSelector(
+		(state: RootState) => state.portfolio.about.profile
+	);
 	return (
 		<HomeContainer>
 			<HomeWrapper className="animate">
@@ -34,7 +38,7 @@ const Home = ({ about, intro }: homeI): JSX.Element => {
 								{'>'}
 							</p>
 
-							{about.map((para, index) => {
+							{info.map((para, index) => {
 								return <p key={index}>{para}</p>;
 							})}
 
