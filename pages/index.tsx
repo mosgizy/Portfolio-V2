@@ -5,7 +5,7 @@ import { useEffect } from 'react';
 import About from '../resources/interface/sideBar';
 import type { GetServerSideProps, InferGetServerSidePropsType } from 'next';
 import { useAppDispatch } from '../helpers/hooks';
-import { sidebar, home } from '../store/slice/portfolioSlice';
+import { home } from '../store/slice/portfolioSlice';
 
 const url = 'https://my-json-server.typicode.com/mosgizy/portfolio-api-V2/';
 
@@ -16,7 +16,6 @@ const Home = (data: InferGetServerSidePropsType<typeof getServerSideProps>) => {
 			info: data.data.profile.info,
 			intro: data.data.profile.intro,
 		};
-		dispatch(sidebar(data.data));
 		dispatch(home(homePage));
 	}, []);
 	return (

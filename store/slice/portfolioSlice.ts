@@ -1,10 +1,25 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice,createAsyncThunk } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 import apiI from "../../resources/interface/apiInterface";
 import { ProjectsI } from "../../resources/interface/project";
 import AboutI from "../../resources/interface/sideBar";
+import { RootState } from "../store";
 
-const initialState:apiI = {
+const url = 'https://my-json-server.typicode.com/mosgizy/portfolio-api-V2/about'
+
+export const fetchSidebar = createAsyncThunk('sidebar/fetchSidebar',
+    async () => {
+        try {
+            const response = await fetch(url)
+            return response.json();
+        } catch (error) { 
+            console.error(error);
+            return {}
+        }
+    }
+)
+
+const initialState = {
     projects: [],
     about: {
         profile: {
@@ -23,7 +38,7 @@ const initialState:apiI = {
         socialMedia: {}
     },
     api_key:{}
-}
+} as apiI
 
 export const portfolioSlice = createSlice({
     name: 'portfolio',
@@ -36,13 +51,16 @@ export const portfolioSlice = createSlice({
         projects: (state, action: PayloadAction<ProjectsI[]>) => {
             state.projects = action.payload
         },
-        sidebar: (state,action:PayloadAction<AboutI>) => {
+    },
+    extraReducers: (builder) => {
+        builder.addCase(fetchSidebar.fulfilled, (state, action:PayloadAction<AboutI>) => {
             state.about = action.payload
-            // console.log(action.payload)
-        }
-    }
+        })
+    },
 })
 
-export const {home,projects,sidebar} = portfolioSlice.actions
+export const { home, projects } = portfolioSlice.actions
+
+export const selectPortfolio = (state: RootState) => state.portfolio
 
 export default portfolioSlice.reducer
