@@ -25,8 +25,7 @@ import { Overlay } from '../../styles/Global.styles';
 import Link from 'next/link';
 import About from '../../resources/interface/sideBar';
 import { useLayoutEffect, useState } from 'react';
-import type { RootState } from '../../store/store';
-import { useSelector } from 'react-redux';
+import { useAppSelector } from '../../helpers/hooks';
 interface sideBarInterface {
 	active: boolean;
 	setActive: React.Dispatch<React.SetStateAction<boolean>>;
@@ -37,7 +36,7 @@ const Sidebar = ({ active, setActive }: sideBarInterface): JSX.Element => {
 		setActive((prev) => !prev);
 	};
 
-	const data = useSelector((state: RootState) => state.portfolio.about);
+	const data = useAppSelector((state) => state.portfolio.about);
 
 	// const skillIcons: socialI = {
 	// 	html: htmlIcon,

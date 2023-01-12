@@ -4,13 +4,13 @@ import HomePage from '../components/home/HomePage';
 import { useEffect } from 'react';
 import About from '../resources/interface/sideBar';
 import type { GetServerSideProps, InferGetServerSidePropsType } from 'next';
-import { useDispatch } from 'react-redux';
+import { useAppDispatch } from '../helpers/hooks';
 import { sidebar, home } from '../store/slice/portfolioSlice';
 
 const url = 'https://my-json-server.typicode.com/mosgizy/portfolio-api-V2/';
 
 const Home = (data: InferGetServerSidePropsType<typeof getServerSideProps>) => {
-	const dispatch = useDispatch();
+	const dispatch = useAppDispatch();
 	useEffect(() => {
 		const homePage = {
 			info: data.data.profile.info,

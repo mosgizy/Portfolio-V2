@@ -7,16 +7,15 @@ import {
 	HomeWrapper,
 	Intro,
 } from '../../styles/Home.styles';
-import { useSelector } from 'react-redux';
-import { RootState } from '../../store/store';
+import { useAppSelector } from '../../helpers/hooks';
 interface homeI {
 	about: string[];
 	intro: string[];
 }
 
 const Home = (): JSX.Element => {
-	const { info, intro } = useSelector(
-		(state: RootState) => state.portfolio.about.profile
+	const { info, intro } = useAppSelector(
+		(state) => state.portfolio.about.profile
 	);
 	return (
 		<HomeContainer>
