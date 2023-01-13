@@ -25,6 +25,7 @@ export const NavWrapper = styled.nav`
     width: 100%;
     position: fixed;
     top: 0;
+    right:0;
     z-index: 10;
 
     @media only screen and (min-width:${TABLET}){
