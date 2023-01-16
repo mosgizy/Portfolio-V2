@@ -60,7 +60,7 @@ const Navbar = ({ setSlide }: NavInterface): JSX.Element => {
 					width="230"
 					right="0"
 					left="unset"
-					translateX="-500"
+					translateX="230"
 					nav
 				>
 					<NavContentHeader>

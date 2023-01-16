@@ -208,3 +208,13 @@ export const ModalContent = styled.div`
         width:100%;
     }
 `
+
+export const ModalCard = styled.div`
+    max-width:720px;
+    width:80%;
+    height:90vh;
+    line-height: 2.5;
+    background-color:var(--bg-color);
+    padding:2rem;
+    overflow:scroll;
+`
