@@ -125,7 +125,7 @@ export const SidebarHeaderInfo = styled.div`
 
 export const SidebarSectionWrapper = styled.div`
     padding-inline: var(--padding);
-    padding-block:13rem 4.5rem;
+    padding-block:14.5rem 4.5rem;
     height: 100vh;
     overflow:scroll;
 

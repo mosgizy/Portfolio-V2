@@ -49,7 +49,7 @@ const Navbar = ({ setSlide }: NavInterface): JSX.Element => {
 				>
 					<FontAwesomeIcon icon={faEllipsisVertical} />
 				</NavIcon>
-				<NavIcon active={active} translateX="-100" onClick={handleToggle}>
+				<NavIcon active={active} translateX="" onClick={handleToggle}>
 					<FontAwesomeIcon icon={faBars} />
 				</NavIcon>
 			</NavWrapper>
@@ -60,7 +60,7 @@ const Navbar = ({ setSlide }: NavInterface): JSX.Element => {
 					width="230"
 					right="0"
 					left="unset"
-					translateX="-900"
+					translateX="230"
 					nav
 				>
 					<NavContentHeader>

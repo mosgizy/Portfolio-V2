@@ -41,7 +41,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 				<SectionBackground>
 					<div className="overlay"></div>
 				</SectionBackground>
-				<SectionContainer ref={app}>
+				<SectionContainer>
 					<Component {...pageProps} />
 				</SectionContainer>
 			</SectionWrapper>

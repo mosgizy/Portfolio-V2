@@ -54,7 +54,7 @@ export const NavContentWrapper = styled.div``
 
 export const NavContent = styled.div<navInterfaces>`
     background-color:var(--btn-color);
-    position: absolute;
+    position: fixed;
     right: ${({ right }) => right};
     left: ${({left}) => left};
     top: 0;
