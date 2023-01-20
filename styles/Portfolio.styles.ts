@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { TABLET,LARGE_SCREEN } from '../resources/constants/screenSize';
+import { TABLET,MOBILE_SCREEN,LARGE_SCREEN } from '../resources/constants/screenSize';
 
 export const PortfolioWrapper = styled.section` 
     overflow-y: scroll;
@@ -76,16 +76,16 @@ export const Projectcard = styled.div`
     border-radius: .4rem;
     box-shadow:  10px 15px 12px 1px rgba(0,0,0,0.4);
     
-    &:hover{
+    /* &:hover{
         > div{
             transform: translateY(115px);
         }
-    }
+    } */
 
-    @media only screen and (min-width:${LARGE_SCREEN}){
+    @media only screen and (min-width:${MOBILE_SCREEN}){
         &:hover{
             > div{
-                transform: translateY(135px);
+                transform: translateY(0);
             }
         }
     }
@@ -112,10 +112,14 @@ export const ProjectInfo = styled.div`
     box-shadow: 0 3px 8px 0 rgba(15, 15, 20, 0.2);
     padding:1rem;
     width: 100%;
-    height: 150px;
     position:absolute;
-    transform: translateY(250%);
-    transition: transform var(--transition);
+    bottom: 0;
+    
+    
+    @media only screen and (min-width: ${MOBILE_SCREEN}) {
+        transform: translateY(150px);
+        transition: transform var(--transition);
+    }
 
     h5{
         font-size: 14px;

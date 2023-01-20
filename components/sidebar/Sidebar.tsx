@@ -47,13 +47,7 @@ const Sidebar = ({ active, setActive }: sideBarInterface): JSX.Element => {
 	// 	nextJs: nextIcon,
 	// };
 
-	// const socialIcons = [
-	// 	TwitterIcon,
-	// 	FacebookIcon,
-	// 	MediumIcon,
-	// 	GithubIcon,
-	// 	LinkedinIcon,
-	// ];
+	const socialIcons = [TwitterIcon, GithubIcon, LinkedinIcon];
 
 	useLayoutEffect(() => {
 		console.log(data);
