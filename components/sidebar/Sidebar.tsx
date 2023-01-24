@@ -34,14 +34,7 @@ const Sidebar = ({ active, setActive }: sideBarInterface): JSX.Element => {
 	const data = useAppSelector((state) => state.portfolio.about);
 	const dispatch = useAppDispatch();
 
-	// const skillIcons: socialI = {
-	// 	html: htmlIcon,
-	// 	css: cssIcon,
-	// 	reactJs: reactIcon,
-	// 	nextJs: nextIcon,
-	// };
-
-	const socialIcons = [TwitterIcon, GithubIcon, LinkedinIcon];
+	const socialIcons = [TwitterIcon, GithubIcon, LinkedinIcon, MediumIcon];
 
 	useLayoutEffect(() => {
 		dispatch(fetchSidebar());
@@ -118,22 +111,30 @@ const Sidebar = ({ active, setActive }: sideBarInterface): JSX.Element => {
 						</ul>
 					</SideBarSections>
 					<div className="download">
-						<Link href="#">download cv</Link>
+						<Link
+							href="https://rxresu.me/hasterisk/moshood-opeyemi-odugbesan"
+							target="_blank"
+						>
+							download cv
+						</Link>
 						<FontAwesomeIcon icon={faDownload} />
 					</div>
 				</SidebarSectionWrapper>
 				<SocialMediaLinks>
 					<ul>
 						{Object.entries(data.socialMedia).map((socialIcon, index) => {
+							const icon = socialIcons[index];
 							return (
 								<li key={index}>
 									<Link href={socialIcon[1].link}>
-										<Image
+										{/* <Image
 											src={socialIcon[1].icon}
 											width={20}
 											height={20}
 											alt="social icon"
-										/>
+										/> */}
+
+										<span>{icon}</span>
 									</Link>
 								</li>
 							);
