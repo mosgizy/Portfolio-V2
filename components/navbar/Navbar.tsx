@@ -44,7 +44,7 @@ const Navbar = ({ setSlide }: NavInterface): JSX.Element => {
 			<NavWrapper>
 				<NavIcon
 					active={toggleSidebar}
-					translateX="200"
+					translateX=""
 					onClick={() => setToggleSidebar((prev) => !prev)}
 				>
 					<FontAwesomeIcon icon={faEllipsisVertical} />

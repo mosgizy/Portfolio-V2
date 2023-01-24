@@ -88,7 +88,6 @@ export const InputContainer = styled.div`
         border: none;
         outline: none;
         color: var(--primary-color);
-        text-transform: capitalize;
 
         :focus{
             outline: none;
@@ -122,5 +121,9 @@ export const InputContainer = styled.div`
 export const BtnWrapper = styled.div``
 
 export const SubmitBtn = styled(Buttton)`
+    transition: all var(--transition);
 
+    :hover{
+        border-radius:2rem;
+    }
 `

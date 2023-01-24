@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useRef, useReducer } from 'react';
 import {
 	BtnWrapper,
 	FormGroup,
@@ -11,29 +11,64 @@ import { useForm } from 'react-hook-form';
 import { formData } from '../../resources/interface/formInterface';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser, faAt, faEnvelope } from '@fortawesome/free-solid-svg-icons';
+import emailjs from '@emailjs/browser';
 
-const ContactForm = (): JSX.Element => {
-	const [formData, setFormData] = useState<formData>();
+const reducer = (state: any, action: any) => {
+	return { ...state, ...action };
+};
+
+const initialState: formData = {
+	name: '',
+	email: '',
+	message: '',
+};
+
+const ContactForm = (apiKey: { apiKey: any }): JSX.Element => {
+	const formRef = useRef<any>();
+	const [formData, setFormData] = useReducer(reducer, initialState);
+
 	const {
 		register,
 		handleSubmit,
 		formState: { errors },
 	} = useForm();
 
+	const sendEmail = () => {
+		formRef.current &&
+			emailjs
+				.sendForm(
+					'default_service',
+					'hasterisk',
+					formRef?.current,
+					'fuIcQY8uP3X-KbV9F'
+				)
+				.then(
+					(result) => {
+						console.log(result);
+						setFormData({
+							name: '',
+							email: '',
+							message: '',
+						});
+					},
+					(error) => {
+						console.log(error);
+					}
+				);
+	};
+
 	return (
 		<Wrapper>
-			<FormGroup
-				onSubmit={handleSubmit((data) =>
-					setFormData({
-						name: data?.name,
-						email: data?.email,
-						message: data?.message,
-					})
-				)}
-			>
+			<FormGroup ref={formRef} onSubmit={handleSubmit(sendEmail)}>
 				<Inputwrapper>
 					<InputContainer>
-						<input {...register('name')} placeholder="name" id="name" />
+						<input
+							{...register('user_name', { required: true })}
+							placeholder="Enter your name"
+							id="name"
+							value={formData.name}
+							onChange={(e) => setFormData({ name: e.target.value })}
+						/>
 						<label htmlFor="name">
 							<FontAwesomeIcon icon={faUser} />
 						</label>
@@ -43,11 +78,13 @@ const ContactForm = (): JSX.Element => {
 				<Inputwrapper>
 					<InputContainer>
 						<input
-							{...register('email', {
+							{...register('user_email', {
 								pattern: /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/,
 								required: true,
 							})}
-							placeholder="email"
+							value={formData.email}
+							onChange={(e) => setFormData({ email: e.target.value })}
+							placeholder="Enter your email"
 							id="email"
 						/>
 						<label htmlFor="email">
@@ -61,7 +98,9 @@ const ContactForm = (): JSX.Element => {
 						<textarea
 							{...register('message', { required: true })}
 							id="comment"
-							placeholder="message"
+							placeholder="Enter your message..."
+							value={formData.message}
+							onChange={(e) => setFormData({ message: e.target.value })}
 						/>
 						<label htmlFor="message">
 							<FontAwesomeIcon icon={faEnvelope} />
@@ -70,7 +109,7 @@ const ContactForm = (): JSX.Element => {
 					{errors.comment && <p>Please leave a comment.</p>}
 				</Inputwrapper>
 				<BtnWrapper>
-					<SubmitBtn type="submit">send message</SubmitBtn>
+					<SubmitBtn type="submit">Drop in the mail</SubmitBtn>
 				</BtnWrapper>
 			</FormGroup>
 		</Wrapper>

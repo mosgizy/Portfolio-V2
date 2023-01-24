@@ -15,15 +15,9 @@ import {
 	faCheck,
 	faDownload,
 } from '@fortawesome/free-solid-svg-icons';
-// import avatar from '../../resources/images/avatar.jpg';
-// import htmlIcon from '../../resources/images/html5.png';
-// import cssIcon from '../../resources/images/css3.png';
-// import reactIcon from '../../resources/images/react.png';
-// import nextIcon from '../../resources/images/next.png';
 import Image, { StaticImageData } from 'next/image';
 import { Overlay } from '../../styles/Global.styles';
 import Link from 'next/link';
-import About from '../../resources/interface/sideBar';
 import { useLayoutEffect, useState } from 'react';
 import { useAppSelector, useAppDispatch } from '../../helpers/hooks';
 import { fetchSidebar } from '../../store/slice/portfolioSlice';
@@ -50,7 +44,6 @@ const Sidebar = ({ active, setActive }: sideBarInterface): JSX.Element => {
 	const socialIcons = [TwitterIcon, GithubIcon, LinkedinIcon];
 
 	useLayoutEffect(() => {
-		console.log(data);
 		dispatch(fetchSidebar());
 	}, []);
 
