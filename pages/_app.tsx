@@ -14,24 +14,24 @@ function MyApp({ Component, pageProps }: AppProps) {
 	const app = useRef<HTMLDivElement>(null);
 	const [active, setActive] = useState<boolean>(false);
 
-	useEffect(() => {
-		const ctx = gsap.context(() => {
-			gsap.fromTo(
-				'.animate',
-				{
-					transform: `scale(0.95)`,
-					opacity: 0,
-				},
-				{
-					transform: `scale(1)`,
-					opacity: 1,
-					duration: 1,
-					stagger: 2,
-				}
-			);
-		}, app);
-		return () => ctx.revert();
-	});
+	// useEffect(() => {
+	// 	const ctx = gsap.context(() => {
+	// 		gsap.fromTo(
+	// 			'.animate',
+	// 			{
+	// 				transform: `scale(0.95)`,
+	// 				opacity: 0,
+	// 			},
+	// 			{
+	// 				transform: `scale(1)`,
+	// 				opacity: 1,
+	// 				duration: 1,
+	// 				stagger: 2,
+	// 			}
+	// 		);
+	// 	}, app);
+	// 	return () => ctx.revert();
+	// });
 
 	return (
 		<Provider store={store}>

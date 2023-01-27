@@ -1,4 +1,5 @@
 import styled,{css} from 'styled-components';
+import { MOBILE_SCREEN } from '../resources/constants/screenSize';
 
 export const HistoryWrapper = styled.div`
     display: flex;
@@ -22,18 +23,29 @@ export const CardContainer = styled.div`
     margin-block-start: 2rem;
     padding-inline-end: 3rem;
     position: relative;
-    display: flex;
+    display: flex;    
     flex-direction: column;
-    gap: 2rem;
 
-    ::before{
+    @media only screen and (min-width:${MOBILE_SCREEN}){
+        display:grid;
+        grid-template-columns:repeat(2,1fr);
+        gap: 0rem 4.5rem;
+    }
+`
+
+export const CardContainerWrapper = styled.div`
+    padding-block-end: 2rem;
+    position:relative;
+
+    ::after{
         content:"";
         position: absolute;
-        background-color: #191923;
-        right: 8.3px;
+        background-color: #191923;    
         top: 0;
         bottom: 0;
-        width: 5px;
+        width: 4px;
+        z-index:-1;
+        right:-2.485rem;
     }
 `
 
@@ -50,15 +62,15 @@ export const CardWrapper = styled.div`
         content: '';
         position: absolute;
         width: 10px;
-        height: 10px;
         top:10%;
+        height:10px;
+        right:-2.485rem;
     }
-
+    
     ::before {
-        right: -5px;
-        background-color: inherit;
+        height: 10px;
         transform: rotate(45deg);
-    }     
+    }   
     
     .ring{
         position: absolute;
@@ -180,13 +192,26 @@ export const ModalWrapper = styled.div`
     background-color: rgba(0, 0, 0, 0.5);
     padding-inline:1rem;
     z-index: 1000;
+    display:grid;
+    place-items:center;
 
     .slider-control-centerright,
     .slider-control-centerleft {
         display: none !important;
     }
-`
 
+    .slider-container{
+        width: 100%;
+        margin: auto;
+
+        img{
+            height:100%;
+        }
+        @media only screen and (min-width: 768px) {
+            width:75vw;
+        }
+    }
+`
 const center = css`
     display: flex;
     justify-content: center;
@@ -194,25 +219,30 @@ const center = css`
 `
 
 export const ModalElement = styled.div`
-    ${center}
-    min-height: 100vh;
+    width:100%;
+
+    @media only screen and (min-width: ${MOBILE_SCREEN}) {
+        width:75vw;
+    }
 `
 
 export const ModalContent = styled.div`
-    max-width: 950px;
-    margin:auto;
     aspect-ratio:1;
     ${center}
 
     > img{
         width:100%;
     }
+
+    @media only screen and (min-width:${MOBILE_SCREEN}) {
+        height:85vh;
+        width:500px;
+    }
 `
 
 export const ModalCard = styled.div`
-    max-width:720px;
-    width:80%;
-    height:90vh;
+    /* width:100%; */
+    /* height:90vh; */
     line-height: 2.5;
     background-color:var(--bg-color);
     padding:2rem;

@@ -1,6 +1,6 @@
 import type { GetServerSideProps, InferGetServerSidePropsType } from 'next';
 import ContactForm from '../components/contact/ContactForm';
-import ContactInfo from '../components/contact/ContactInfo';
+// import ContactInfo from '../components/contact/ContactInfo';
 import { ContactInfoWrapper, ContactWrapper } from '../styles/Contact.styles';
 
 const url = 'https://my-json-server.typicode.com/mosgizy/portfolio-api-V2/';

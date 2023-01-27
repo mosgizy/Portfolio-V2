@@ -15,7 +15,7 @@ import {
 	faCheck,
 	faDownload,
 } from '@fortawesome/free-solid-svg-icons';
-import Image, { StaticImageData } from 'next/image';
+import Image from 'next/image';
 import { Overlay } from '../../styles/Global.styles';
 import Link from 'next/link';
 import { useLayoutEffect, useState } from 'react';

@@ -1,4 +1,5 @@
 import {
+	CardContainerWrapper,
 	CardContent,
 	CardHeader,
 	CardWrapper,
@@ -15,8 +16,8 @@ interface cardProps {
 	setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
 	setIndex: React.Dispatch<React.SetStateAction<number>>;
 	index: number;
-	cardType?: string;
-	setCardType: React.Dispatch<React.SetStateAction<string>>;
+	// cardType?: string;
+	// setCardType?: React.Dispatch<React.SetStateAction<string>>;
 }
 
 const Card = ({
@@ -28,34 +29,33 @@ const Card = ({
 	setShowModal,
 	setIndex,
 	index,
-	cardType,
-	setCardType,
 }: cardProps): JSX.Element => {
 	const modalPopup = () => {
 		setShowModal((prev) => !prev);
 		setIndex(index);
-		cardType && setCardType(cardType);
 	};
 
 	return (
-		<CardWrapper>
-			<CardHeader>
-				<Place>
-					<h5>{place}</h5>
-					<span>{title}</span>
-				</Place>
-				<Date>{date} </Date>
-			</CardHeader>
-			<CardContent>{info}</CardContent>
-			{linkText && (
-				<span className="link" onClick={modalPopup}>
-					{linkText} <span className="arrow">{right}</span>
-				</span>
-			)}
-			<div className="ring">
-				<div className="beat"></div>
-			</div>
-		</CardWrapper>
+		<CardContainerWrapper>
+			<CardWrapper>
+				<CardHeader>
+					<Place>
+						<h5>{place}</h5>
+						<span>{title}</span>
+					</Place>
+					<Date>{date} </Date>
+				</CardHeader>
+				<CardContent>{info}</CardContent>
+				{linkText && (
+					<span className="link" onClick={modalPopup}>
+						{linkText} <span className="arrow">{right}</span>
+					</span>
+				)}
+				<div className="ring">
+					<div className="beat"></div>
+				</div>
+			</CardWrapper>
+		</CardContainerWrapper>
 	);
 };
 
