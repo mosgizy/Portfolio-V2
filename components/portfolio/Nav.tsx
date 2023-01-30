@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { NavElement } from '../../styles/Portfolio.styles';
 
 interface portfolioProp {
@@ -14,10 +14,6 @@ const Nav = ({ title, selectedCategory }: portfolioProp): JSX.Element => {
 		setHandleActive(e.target.innerHTML);
 		selectedCategory(title);
 	};
-
-	useEffect(() => {
-		console.log(handleActive === title);
-	}, [handleActive]);
 
 	return (
 		<NavElement active={handleActive === title} onClick={handleClick}>

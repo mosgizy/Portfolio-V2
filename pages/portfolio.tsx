@@ -8,8 +8,7 @@ import Nav from '../components/portfolio/Nav';
 import Project from '../components/portfolio/Project';
 import { ProjectsI } from '../resources/interface/project';
 import { useState } from 'react';
-
-const url = 'https://my-json-server.typicode.com/mosgizy/portfolio-api-V2/';
+import { URL } from '../resources/constants/url';
 
 const Portfolio = ({
 	...projects
@@ -69,7 +68,7 @@ const Portfolio = ({
 export const getServerSideProps: GetServerSideProps<{
 	data: ProjectsI[];
 }> = async () => {
-	const res = await fetch(url + 'projects');
+	const res = await fetch(URL + 'projects');
 	const data: ProjectsI[] = await res.json();
 
 	console.log(data);

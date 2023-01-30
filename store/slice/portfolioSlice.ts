@@ -4,13 +4,12 @@ import apiI from "../../resources/interface/apiInterface";
 import { ProjectsI } from "../../resources/interface/project";
 import AboutI from "../../resources/interface/sideBar";
 import { RootState } from "../store";
-
-const url = 'https://my-json-server.typicode.com/mosgizy/portfolio-api-V2/about'
+import { URL } from "../../resources/constants/url";
 
 export const fetchSidebar = createAsyncThunk('sidebar/fetchSidebar',
     async () => {
         try {
-            const response = await fetch(url)
+            const response = await fetch(URL + 'about')
             return response.json();
         } catch (error) { 
             console.error(error);

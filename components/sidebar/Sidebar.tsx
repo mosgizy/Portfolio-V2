@@ -18,7 +18,7 @@ import {
 import Image from 'next/image';
 import { Overlay } from '../../styles/Global.styles';
 import Link from 'next/link';
-import { useLayoutEffect, useState } from 'react';
+import { useLayoutEffect } from 'react';
 import { useAppSelector, useAppDispatch } from '../../helpers/hooks';
 import { fetchSidebar } from '../../store/slice/portfolioSlice';
 interface sideBarInterface {
@@ -127,13 +127,6 @@ const Sidebar = ({ active, setActive }: sideBarInterface): JSX.Element => {
 							return (
 								<li key={index}>
 									<Link href={socialIcon[1].link}>
-										{/* <Image
-											src={socialIcon[1].icon}
-											width={20}
-											height={20}
-											alt="social icon"
-										/> */}
-
 										<span>{icon}</span>
 									</Link>
 								</li>

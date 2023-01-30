@@ -1,0 +1,1 @@
+export const URL = 'https://my-json-server.typicode.com/mosgizy/portfolio-api-V2/';

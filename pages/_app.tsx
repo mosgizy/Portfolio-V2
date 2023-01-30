@@ -6,8 +6,6 @@ import { useState } from 'react';
 import { store } from '../store/store';
 import { Provider } from 'react-redux';
 
-const url = 'https://my-json-server.typicode.com/mosgizy/portfolio-api-V2/';
-
 function MyApp({ Component, pageProps }: AppProps) {
 	const [active, setActive] = useState<boolean>(false);
 

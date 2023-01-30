@@ -6,8 +6,7 @@ import About from '../resources/interface/sideBar';
 import type { GetServerSideProps, InferGetServerSidePropsType } from 'next';
 import { useAppDispatch } from '../helpers/hooks';
 import { home } from '../store/slice/portfolioSlice';
-
-const url = 'https://my-json-server.typicode.com/mosgizy/portfolio-api-V2/';
+import { URL } from '../resources/constants/url';
 
 const Home = (data: InferGetServerSidePropsType<typeof getServerSideProps>) => {
 	const dispatch = useAppDispatch();
@@ -47,7 +46,7 @@ const Home = (data: InferGetServerSidePropsType<typeof getServerSideProps>) => {
 export const getServerSideProps: GetServerSideProps<{
 	data: About;
 }> = async () => {
-	const res = await fetch(url + 'about');
+	const res = await fetch(URL + 'about');
 	const data: About = await res.json();
 
 	if (!data) {
