@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { TABLET,MOBILE_SCREEN,LARGE_SCREEN } from '../resources/constants/screenSize';
+import { TABLET,MOBILE_SCREEN,LARGE_SCREEN,DESKTOP } from '../resources/constants/screenSize';
 
 export const PortfolioWrapper = styled.section` 
     overflow-y: scroll;
@@ -25,7 +25,7 @@ export const NavWrapper = styled.ul`
     }
 `
 
-export const NavElement = styled.li`
+export const NavElement = styled.li<{active:boolean}>`
     font-weight: 600;
     letter-spacing: 1.5px;
     font-size: 10px;
@@ -34,6 +34,7 @@ export const NavElement = styled.li`
     width: 100%;
     text-align: center;
     transition: color var(--transition);
+    /* color: ${({active}) => active ? 'var(--header-text-color)' : ''}; */
     
     :hover{
         color: var(--header-text-color);
@@ -53,7 +54,6 @@ export const PortfolioContainer = styled.div`
     @media only screen and (min-width:768px){
         flex-direction: row;
         flex-wrap: wrap;
-        justify-content: center;
         margin-block-end: 2rem;
 
         > * {
@@ -75,12 +75,6 @@ export const Projectcard = styled.div`
     height: 250px;
     border-radius: .4rem;
     box-shadow:  10px 15px 12px 1px rgba(0,0,0,0.4);
-    
-    /* &:hover{
-        > div{
-            transform: translateY(115px);
-        }
-    } */
 
     @media only screen and (min-width:${MOBILE_SCREEN}){
         &:hover{
@@ -114,11 +108,15 @@ export const ProjectInfo = styled.div`
     width: 100%;
     position:absolute;
     bottom: 0;
+    transition: transform var(--transition);
     
     
     @media only screen and (min-width: ${MOBILE_SCREEN}) {
-        transform: translateY(150px);
-        transition: transform var(--transition);
+        transform: translateY(180px);
+    }
+
+    @media only screen and (min-width: ${DESKTOP}) {
+        transform: translateY(180px);
     }
 
     h5{

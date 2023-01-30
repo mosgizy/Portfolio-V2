@@ -1,4 +1,4 @@
-import React from 'react';
+import { useState, useEffect } from 'react';
 import { NavElement } from '../../styles/Portfolio.styles';
 
 interface portfolioProp {
@@ -7,8 +7,22 @@ interface portfolioProp {
 }
 
 const Nav = ({ title, selectedCategory }: portfolioProp): JSX.Element => {
+	const [handleActive, setHandleActive] = useState<string>('all categories');
+
+	const handleClick = (e: any) => {
+		e.preventDefault();
+		setHandleActive(e.target.innerHTML);
+		selectedCategory(title);
+	};
+
+	useEffect(() => {
+		console.log(handleActive === title);
+	}, [handleActive]);
+
 	return (
-		<NavElement onClick={() => selectedCategory(title)}>{title}</NavElement>
+		<NavElement active={handleActive === title} onClick={handleClick}>
+			{title}
+		</NavElement>
 	);
 };
 
