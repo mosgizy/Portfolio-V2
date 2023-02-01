@@ -19,7 +19,9 @@ const Home = (): JSX.Element => {
 	const dispatch = useAppDispatch();
 
 	useEffect(() => {
-		info ? dispatch(setLoader(false)) : dispatch(setLoader(true));
+		setTimeout(() => {
+			info ? dispatch(setLoader(false)) : dispatch(setLoader(true));
+		}, 2000);
 	}, [info]);
 
 	return (
