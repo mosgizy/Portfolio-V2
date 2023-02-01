@@ -1,4 +1,3 @@
-import type { NextPage } from 'next';
 import Head from 'next/head';
 import HomePage from '../components/home/HomePage';
 import { useEffect } from 'react';
@@ -7,9 +6,14 @@ import type { GetServerSideProps, InferGetServerSidePropsType } from 'next';
 import { useAppDispatch } from '../helpers/hooks';
 import { home } from '../store/slice/portfolioSlice';
 import { URL } from '../resources/constants/url';
+import { useAppSelector } from '../helpers/hooks';
+import { LoaderAnimation, LoaderWrapper } from '../styles/Global.styles';
 
 const Home = (data: InferGetServerSidePropsType<typeof getServerSideProps>) => {
 	const dispatch = useAppDispatch();
+	const loader = useAppSelector((state) => state.portfolio.loader);
+	const { name } = useAppSelector((state) => state.portfolio.about.profile);
+
 	useEffect(() => {
 		const homePage = {
 			info: data.data.profile.info,
@@ -17,6 +21,11 @@ const Home = (data: InferGetServerSidePropsType<typeof getServerSideProps>) => {
 		};
 		dispatch(home(homePage));
 	}, []);
+
+	useEffect(() => {
+		console.log(loader);
+	}, [loader]);
+
 	return (
 		<div>
 			<Head>
@@ -37,6 +46,13 @@ const Home = (data: InferGetServerSidePropsType<typeof getServerSideProps>) => {
 					content="I am a frontend developer, I love to solve problems whether it's finding the most elegant way to write lines of code or figuring out which code fits best into progression. I am committed to learning and self-development to achieve better results. I am always open to learning and constructive feedback.I create interactive and responsive websites and web apps on a daily basis in order me grow and learn a ton of new stuff as a developer my github kind of scream that. My current tech stack in HTML, CSS, JavaScript and React."
 				/>
 			</Head>
+
+			{loader && (
+				<LoaderWrapper>
+					<p>{name}</p>
+					<LoaderAnimation></LoaderAnimation>
+				</LoaderWrapper>
+			)}
 
 			<HomePage />
 		</div>

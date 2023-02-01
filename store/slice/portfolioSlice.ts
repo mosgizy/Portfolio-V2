@@ -1,7 +1,6 @@
 import { createSlice,createAsyncThunk } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 import apiI from "../../resources/interface/apiInterface";
-import { ProjectsI } from "../../resources/interface/project";
 import AboutI from "../../resources/interface/sideBar";
 import { RootState } from "../store";
 import { URL } from "../../resources/constants/url";
@@ -36,7 +35,8 @@ const initialState = {
         },
         socialMedia: {}
     },
-    api_key:{}
+    api_key: {},
+    loader:true,
 } as apiI
 
 export const portfolioSlice = createSlice({
@@ -47,9 +47,9 @@ export const portfolioSlice = createSlice({
             state.about.profile.info = action.payload.info
             state.about.profile.intro = action.payload.intro
         },
-        projects: (state, action: PayloadAction<ProjectsI[]>) => {
-            state.projects = action.payload
-        },
+        setLoader: (state, action: PayloadAction<boolean>) => {
+            state.loader = action.payload
+        }
     },
     extraReducers: (builder) => {
         builder.addCase(fetchSidebar.fulfilled, (state, action:PayloadAction<AboutI>) => {
@@ -58,7 +58,7 @@ export const portfolioSlice = createSlice({
     },
 })
 
-export const { home, projects } = portfolioSlice.actions
+export const { home,setLoader} = portfolioSlice.actions
 
 export const selectPortfolio = (state: RootState) => state.portfolio
 

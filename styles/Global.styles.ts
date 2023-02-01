@@ -1,4 +1,4 @@
-import styled, { createGlobalStyle, css } from 'styled-components';
+import styled, { createGlobalStyle, css,keyframes } from 'styled-components';
 import { TABLET } from '../resources/constants/screenSize';
 
 const GlobalStyle = createGlobalStyle`
@@ -170,4 +170,58 @@ export const SectionContainer = styled.div`
     }
 `
 
+
+const animloader = keyframes`
+    0% {
+        transform: scale(0);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 0;
+    }
+`
+
+export const LoaderWrapper = styled.div`
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap:.5rem;
+    position:absolute;
+    inset:0;
+    z-index:9999;
+    background:linear-gradient(159deg, 
+        rgba(37, 37, 50, 0.98) 0%, 
+        rgba(35, 35, 45, 0.98) 100%);
+
+    p{
+        text-transform:capitalize;
+        font-size:1.5rem;
+        color:white;
+    }
+`
+
+export const LoaderAnimation = styled.div`
+    width: 48px;
+    height: 48px;
+    position: relative;
+
+    &::before,&::after {
+        content: '';  
+        box-sizing: border-box;
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        border: 2px solid var(--secondary-color);
+        position: absolute;
+        left: 0;
+        top: 0;
+        animation: ${animloader} 2s linear infinite;
+    }
+
+    &::after{
+        animation-delay: 1s;
+    }
+`
 export default GlobalStyle;

@@ -5,4 +5,5 @@ export default interface apiI{
     projects: ProjectsI[];
     about: AboutI;
     api_key: ApiKeyI;
+    loader: boolean;
 }

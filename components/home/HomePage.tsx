@@ -7,16 +7,21 @@ import {
 	HomeWrapper,
 	Intro,
 } from '../../styles/Home.styles';
-import { useAppSelector } from '../../helpers/hooks';
-interface homeI {
-	about: string[];
-	intro: string[];
-}
+import { useAppSelector, useAppDispatch } from '../../helpers/hooks';
+import { setLoader } from '../../store/slice/portfolioSlice';
+import { useEffect } from 'react';
 
 const Home = (): JSX.Element => {
 	const { info, intro } = useAppSelector(
 		(state) => state.portfolio.about.profile
 	);
+
+	const dispatch = useAppDispatch();
+
+	useEffect(() => {
+		info ? dispatch(setLoader(false)) : dispatch(setLoader(true));
+	}, [info]);
+
 	return (
 		<HomeContainer>
 			<HomeWrapper className="animate">
@@ -32,19 +37,19 @@ const Home = (): JSX.Element => {
 						</Intro>
 						<div>
 							<p>
-								{'<'}
-								<i>code</i>
-								{'>'}
-							</p>
-
-							{info.map((para, index) => {
-								return <p key={index}>{para}</p>;
-							})}
-
-							<p>
-								{'</'}
-								<i>code</i>
-								{'>'}
+								<span>
+									{'<'}
+									<i>code</i>
+									{'>'}
+								</span>
+								{info.map((para, index) => {
+									return <span key={index}>{para}</span>;
+								})}
+								<span>
+									{'</'}
+									<i>code</i>
+									{'>'}
+								</span>
 							</p>
 						</div>
 						<Buttton>
