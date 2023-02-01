@@ -8,7 +8,7 @@ const Contact = ({
 	...key
 }: InferGetServerSidePropsType<typeof getServerSideProps>): JSX.Element => {
 	return (
-		<ContactWrapper className="animate">
+		<ContactWrapper>
 			{/* <h4>contact information</h4>
 			<ContactInfoWrapper>
 				<ContactInfo />

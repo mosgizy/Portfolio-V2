@@ -10,8 +10,7 @@ import {
 import type { GetServerSideProps, InferGetServerSidePropsType } from 'next';
 import { HistoryI, recommendationI } from '../../resources/interface/history';
 import { useEffect, useReducer } from 'react';
-
-const url = 'https://my-json-server.typicode.com/mosgizy/portfolio-api-V2/';
+import { URL } from '../../resources/constants/url';
 
 const History = ({
 	...data
@@ -56,53 +55,6 @@ const History = ({
 						})}
 					</CardContainer>
 				</HistoryContainer>
-				{/* <HistoryContainer>
-					<h4>work history</h4>
-					<CardContainer>
-						<Card
-							place="university of toronto"
-							title="student"
-							date="jan 2021 - may 2022"
-							info="Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores
-				temporibus quis reprehenderit nihil aut atque reiciendis corrupti
-				commodi dignissimos at?"
-							linkText="Diploma"
-							setShowModal={setShowModal}
-							setIndex={setIndex}
-							index={2}
-							cardType="history"
-							setCardType={setCardType}
-						/>
-						<Card
-							place="university of toronto"
-							title="student"
-							date="jan 2021 - may 2022"
-							info="Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores
-				temporibus quis reprehenderit nihil aut atque reiciendis corrupti
-				commodi dignissimos at?"
-							linkText="Diploma"
-							setShowModal={setShowModal}
-							setIndex={setIndex}
-							index={3}
-							cardType="history"
-							setCardType={setCardType}
-						/>
-						<Card
-							place="university of toronto"
-							title="student"
-							date="jan 2021 - may 2022"
-							info="Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores
-				temporibus quis reprehenderit nihil aut atque reiciendis corrupti
-				commodi dignissimos at?"
-							linkText="Diploma"
-							setShowModal={setShowModal}
-							setIndex={setIndex}
-							index={4}
-							cardType="history"
-							setCardType={setCardType}
-						/>
-					</CardContainer>
-				</HistoryContainer> */}
 			</HistoryWrapper>
 			{showModal && (
 				<Modal
@@ -118,7 +70,7 @@ const History = ({
 export const getServerSideProps: GetServerSideProps<{
 	data: HistoryI;
 }> = async () => {
-	const res = await fetch(url + 'history');
+	const res = await fetch(URL + 'history');
 	const data: HistoryI = await res.json();
 
 	console.log(data);

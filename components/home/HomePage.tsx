@@ -26,7 +26,7 @@ const Home = (): JSX.Element => {
 
 	return (
 		<HomeContainer>
-			<HomeWrapper className="animate">
+			<HomeWrapper>
 				<BannerWrapper>
 					<div className="overlay"></div>
 				</BannerWrapper>

@@ -39,7 +39,7 @@ const Portfolio = ({
 	);
 
 	return (
-		<PortfolioWrapper className="animate">
+		<PortfolioWrapper>
 			<NavWrapper>
 				{navItems.map((navItem, index) => (
 					<Nav key={index} title={navItem} selectedCategory={selectCategory} />
