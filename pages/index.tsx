@@ -22,10 +22,6 @@ const Home = (data: InferGetServerSidePropsType<typeof getServerSideProps>) => {
 		dispatch(home(homePage));
 	}, []);
 
-	useEffect(() => {
-		console.log(loader);
-	}, [loader]);
-
 	return (
 		<div>
 			<Head>
