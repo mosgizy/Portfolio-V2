@@ -26,6 +26,7 @@ const initialState: formData = {
 const ContactForm = (apiKey: { apiKey: any }): JSX.Element => {
 	const formRef = useRef<any>();
 	const [formData, setFormData] = useReducer(reducer, initialState);
+	const key = apiKey.apiKey.emailjs;
 
 	const {
 		register,
@@ -36,15 +37,9 @@ const ContactForm = (apiKey: { apiKey: any }): JSX.Element => {
 	const sendEmail = () => {
 		formRef.current &&
 			emailjs
-				.sendForm(
-					'default_service',
-					'hasterisk',
-					formRef?.current,
-					'fuIcQY8uP3X-KbV9F'
-				)
+				.sendForm('default_service', 'hasterisk', formRef?.current, key)
 				.then(
 					(result) => {
-						console.log(result);
 						setFormData({
 							name: '',
 							email: '',
@@ -109,7 +104,7 @@ const ContactForm = (apiKey: { apiKey: any }): JSX.Element => {
 					{errors.comment && <p>Please leave a comment.</p>}
 				</Inputwrapper>
 				<BtnWrapper>
-					<SubmitBtn type="submit">Drop in the mail</SubmitBtn>
+					<SubmitBtn type="submit">Mail me</SubmitBtn>
 				</BtnWrapper>
 			</FormGroup>
 		</Wrapper>
