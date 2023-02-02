@@ -25,6 +25,8 @@ export const SidebarHeader = styled.div`
     .toggle{
         display: flex;
         justify-content: flex-end;
+        position: absolute;
+        right: 1rem;
 
         @media only screen and (min-width:${TABLET}){
             display: none;
