@@ -39,6 +39,13 @@ const GlobalStyle = createGlobalStyle`
 
     html{
         scroll-behavior: smooth;
+        scrollbar-width:none;
+        -ms-overflow-style: none;
+
+    }
+
+    html::-webkit-scrollbar{
+        display: none;
     }
 
     body{
@@ -224,4 +231,26 @@ export const LoaderAnimation = styled.div`
         animation-delay: 1s;
     }
 `
+
+export const ErrorPageWrapper = styled.div`
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap:2.5rem;
+    height:100vh;
+    text-align: center;
+`
+
+export const Error = styled.div`
+    font-size: 10rem;
+    span:first-child{
+        color:white;
+    }
+
+    span:last-child{
+        color:var(--secondary-color);
+    }
+`
+
 export default GlobalStyle;

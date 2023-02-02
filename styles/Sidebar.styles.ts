@@ -1,8 +1,9 @@
 import styled, { css } from 'styled-components';
-import { TABLET } from '../resources/constants/screenSize';
+import { MOBILE_SCREEN, TABLET } from '../resources/constants/screenSize';
 
 export const SidebarContentWrapper = styled.div`
     overflow: hidden;
+    height: 100%;
 
     @media only screen and (min-width:${TABLET}){
         > div {
@@ -108,6 +109,7 @@ export const SidebarHeaderInfo = styled.div`
     ${flexCenter}
     text-transform:capitalize;
     gap:.5rem;
+    text-align:center;
 
     h5{
         transition: color var(--transition);
@@ -125,9 +127,20 @@ export const SidebarHeaderInfo = styled.div`
 
 export const SidebarSectionWrapper = styled.div`
     padding-inline: var(--padding);
-    padding-block:14.5rem 4.5rem;
+    padding-block:15.5rem 4.5rem;
     height: 100vh;
     overflow:scroll;
+
+    @media only screen and (min-width:${MOBILE_SCREEN}){
+        padding-block:14.5rem 4.5rem;    
+    }
+
+    ::webkit-scrollbar{
+        display:none;
+    }
+
+    -ms-overflow-style: none;
+    scrollbar-width: none; 
 
     .download {
         text-transform: uppercase;

@@ -31,7 +31,12 @@ const Sidebar = ({ active, setActive }: sideBarInterface): JSX.Element => {
 		setActive((prev) => !prev);
 	};
 
-	const data = useAppSelector((state) => state.portfolio.about);
+	const { image, name, email, developer, country, city } = useAppSelector(
+		(state) => state.portfolio.about.profile
+	);
+	const { skills, socialMedia } = useAppSelector(
+		(state) => state.portfolio.about
+	);
 	const dispatch = useAppDispatch();
 
 	const socialIcons = [TwitterIcon, GithubIcon, LinkedinIcon, MediumIcon];
@@ -58,14 +63,12 @@ const Sidebar = ({ active, setActive }: sideBarInterface): JSX.Element => {
 					</div>
 					<SidebarHeaderWrapper>
 						<SidebarHeaderAvatart>
-							<Image layout="fill" src={data.profile.image} alt="Avatar" />
+							<Image layout="fill" src={image} alt="Avatar" />
 						</SidebarHeaderAvatart>
 						<SidebarHeaderInfo>
-							<h5>{data.profile.name}</h5>
-							<div>
-								<p>{data.profile.developer}</p>
-								{/* <p>game play developer</p> */}
-							</div>
+							<h5>{name}</h5>
+							<p>{email}</p>
+							<p>{developer}</p>
 						</SidebarHeaderInfo>
 					</SidebarHeaderWrapper>
 				</SidebarHeader>
@@ -74,17 +77,17 @@ const Sidebar = ({ active, setActive }: sideBarInterface): JSX.Element => {
 						<ul>
 							<li>
 								<h6>residence:</h6>
-								<p>{data.profile.country}</p>
+								<p>{country}</p>
 							</li>
 							<li>
 								<h6>city:</h6>
-								<p>{data.profile.city}</p>
+								<p>{city}</p>
 							</li>
 						</ul>
 					</SideBarSections>
 					<SideBarSections>
 						<ul className="skills">
-							{Object.entries(data.skills.main).map((skill, index) => {
+							{Object.entries(skills.main).map((skill, index) => {
 								return (
 									<li key={index}>
 										<h6>{skill[0]}</h6>
@@ -96,18 +99,16 @@ const Sidebar = ({ active, setActive }: sideBarInterface): JSX.Element => {
 					</SideBarSections>
 					<SideBarSections>
 						<ul className="knowledge">
-							<li>
-								<FontAwesomeIcon icon={faCheck} />
-								<p>bootstrap, materialize</p>
-							</li>
-							<li>
-								<FontAwesomeIcon icon={faCheck} />
-								<p>styled-components, sass</p>
-							</li>
-							<li>
-								<FontAwesomeIcon icon={faCheck} />
-								<p>github knowledge</p>
-							</li>
+							{skills.others.map((skill, index) => {
+								return (
+									<li>
+										<FontAwesomeIcon icon={faCheck} />
+										<p>
+											{skill[0]}, {skill[1]}
+										</p>
+									</li>
+								);
+							})}
 						</ul>
 					</SideBarSections>
 					<div className="download">
@@ -122,7 +123,7 @@ const Sidebar = ({ active, setActive }: sideBarInterface): JSX.Element => {
 				</SidebarSectionWrapper>
 				<SocialMediaLinks>
 					<ul>
-						{Object.entries(data.socialMedia).map((socialIcon, index) => {
+						{Object.entries(socialMedia).map((socialIcon, index) => {
 							const icon = socialIcons[index];
 							return (
 								<li key={index}>

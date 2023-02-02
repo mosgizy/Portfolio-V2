@@ -1,5 +1,5 @@
 import { ProjectsI, ApiKeyI } from "./project";
-import AboutI,{ SkillsI,SocialMediaLinksI } from "./sideBar";
+import AboutI from "./sideBar";
 
 export default interface apiI{
     projects: ProjectsI[];

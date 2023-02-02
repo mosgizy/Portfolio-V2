@@ -12,6 +12,7 @@ export interface profileI{
     info: string[];
     intro:string[];
     name: string;
+    email: string;
     country: string;
     city: string;
 }
@@ -20,7 +21,7 @@ export interface SkillsI {
     main: {
         [s: string]: string;
     };
-    others: string[];
+    others: string[][];
 }
 
 export interface SocialMediaLinksI{

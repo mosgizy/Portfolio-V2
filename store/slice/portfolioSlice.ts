@@ -26,6 +26,7 @@ const initialState = {
             info: [],
             intro: [],
             name: "",
+            email: "",
             country: "",
             city: "",
         },
