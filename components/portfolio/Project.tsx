@@ -20,13 +20,13 @@ const Project = ({
 }: projectInterface): JSX.Element => {
 	return (
 		<Projectcard>
-			<Link href={link}>
+			<Link href={code}>
 				<Image src={img} layout="fill" alt={title} />
 			</Link>
 			<ProjectInfo>
 				<h5>{title}</h5>
 				<p>{about}</p>
-				<Link href={code}>check code</Link>
+				<Link href={link}>check demo</Link>
 			</ProjectInfo>
 		</Projectcard>
 	);
